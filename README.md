@@ -8,22 +8,19 @@ Get a [scuttlebot][] client instance. If scuttlebot isn't running, start it in t
 var createSsbParty = require('ssb-party')
 ```
 
-### `createSsbParty([[keys, ]opts, ]cb)`
+### `createSsbParty([opts, ]cb)`
 
-optional arguments:
-
-- `keys`: an [ssb-keys][] instance
-- `opts.host`: host to connect to or start the server on
-- `opts.port`: port to connect to or start the server on
-- `opts.appKey`: secret-stack capability key (Buffer)
+- `opts.keys`: an [ssb-keys][] instance. default loads from `~/.ssb/secret`
+- `opts.host`: host to connect to or start the server on. default `"localhost"`
+- `opts.port`: port to connect to or start the server on. default 8008
+- `opts.appKey`: secret-stack capability key (Buffer). default sbot's appKey
 - `opts.out`: where to put standard output of sbot
 - `opts.err`: where to put standard error of sbot
 
 `opts.out` and `opts.err` may be a file descriptor, or `"inherit"` to pass through to the controlling terminal, or `"ignore"` to discard. default is to log to a file, `~/.ssb/out.log`.
 
 Other properties of the `opts` object will be used as [ssb-config][]
-overrides, but if the server is already running, the existing server's config
-will not be updated.
+overrides, but if the server is already running, these will not affect the existing server's config.
 
 ### Example
 
