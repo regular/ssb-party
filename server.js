@@ -13,7 +13,7 @@ process.once('message', function (config) {
       .use(require('scuttlebot/plugins/replicate'))
       .use(require('ssb-blobs'))
       .use(require('scuttlebot/plugins/invite'))
-      .use(require('scuttlebot/plugins/block'))
+      // .use(require('scuttlebot/plugins/block')) // broken in flume
       .use(require('scuttlebot/plugins/local'))
       .use(require('scuttlebot/plugins/logging'))
       .use(require('scuttlebot/plugins/private'))
