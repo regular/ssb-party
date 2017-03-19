@@ -1,0 +1,28 @@
+{
+  "name": "ssb-party",
+  "version": "0.1.0",
+  "description": "ssb client-server party",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssb://%bS/WGqQrhQfH8eoyWieK+9M56DjJ8Q4ulkvb6sXZwPo=.sha256"
+  },
+  "dependencies": {
+    "multiserver": "^1.7.6",
+    "muxrpc": "^6.3.3",
+    "pull-stream": "^3.5.0",
+    "scuttlebot": "^9.4.4",
+    "ssb-blobs": "^0.1.8",
+    "ssb-config": "^2.2.0",
+    "ssb-keys": "^7.0.3"
+  },
+  "devDependencies": {
+    "rimraf": "^2.6.1",
+    "tape": "^4.6.3"
+  },
+  "author": "cel",
+  "license": "Fair"
+}
