@@ -85,7 +85,7 @@ test('autoclose', function (t) {
     sbot.close(function (err) {
       t.error(err, 'close')
       setTimeout(function () {
-        var log = fs.readFileSync(path.join(tmpDir, 'out.log'), 'utf8')
+        var log = fs.readFileSync(path.join(tmpDir, 'debug.log'), 'utf8')
         t.ok(/sbot auto closing/.test(log), 'auto closed')
         t.end()
       }, 5000)
