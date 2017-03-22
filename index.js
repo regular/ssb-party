@@ -65,6 +65,7 @@ module.exports = function (opts, cb) {
 }
 
 function spawnSbot(config, cb) {
+  console.error('Starting scuttlebot...')
   function cbOnce(err, addr) {
     if (!cb) return
     cb(err, addr)
