@@ -1,20 +1,16 @@
 #!/usr/bin/env node
 
 if (process.argv.length < 3) {
-  console.error('usage: ssb-party <module...>')
+  console.error('usage: ssb-party <module> [<args>]')
   process.exit(1)
 }
 
 var createSsbParty = require('.')
 var path = require('path')
 
-var plugins = process.argv.slice(2).map(function (arg) {
-  return require(path.resolve(arg))
-})
+var plugin = require(path.resolve(process.argv[2]))
 
 createSsbParty(function (err, sbot, config) {
   if (err) throw err
-  plugins.forEach(function (plugin) {
-    plugin.init(sbot, config)
-  })
+  plugin.init(sbot, config)
 })
