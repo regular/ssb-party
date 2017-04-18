@@ -72,11 +72,12 @@ function spawnSbot(config, cb) {
     cb = null
   }
   var conf = config.party || {}
-  var out = conf.out === false ? 'ignore' : conf.out === true ? 'inherit' :
-    fs.openSync(path.resolve(config.path, conf.out || 'debug.log'), 'a')
-  var err = conf.err === false ? 'ignore' : conf.err === true ? 'inherit' :
-    !conf.err ? out :
-    fs.openSync(path.resolve(config.path, conf.err), 'a')
+  var out = typeof conf.out === 'string'
+    ? fs.openSync(path.resolve(config.path, conf.out), 'a')
+    : conf.out === false ? 'ignore' : 'inherit'
+  var err = typeof conf.err === 'string'
+    ? fs.openSync(path.resolve(config.path, conf.err), 'a')
+    : conf.err === false ? 'ignore' : conf.err === true ? 'inherit' : out
   var proc = require('child_process')
   var scriptPath = path.join(__dirname, 'server.js')
   var child = proc.spawn(process.execPath, [scriptPath], {

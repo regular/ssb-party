@@ -32,7 +32,7 @@ party(function (err, sbot) {
 ### Config
 
 - `config.timers.keepalive`: minimum time (ms) to keep the server online after the last client disconnects. default: 30s
-- `config.party.out`: where to put standard output of sbot. may be a path (absolute, or relative to ssb's directory), or `false` to discard, or `true` to pass through to the controlling terminal. default: `"debug.log"`
+- `config.party.out`: where to put standard output of sbot. may be a path (absolute, or relative to ssb's directory), or `false` to discard, or `true` to pass through to the controlling terminal. default: `true`
 - `config.party.err`: where to put standard error of sbot. default: same as `config.party.out`
 
 [scuttlebot]: https://github.com/ssbc/scuttlebot

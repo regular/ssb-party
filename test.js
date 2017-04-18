@@ -14,7 +14,10 @@ var sbot1, sbot2
 var opts = {
   keys: ssbKeys.generate(),
   skipPlugins: true,
-  err: 'inherit',
+  party: {
+    out: 'debug.log',
+    err: true
+  },
   path: tmpDir,
   port: 45454,
   timeout: 1000,
