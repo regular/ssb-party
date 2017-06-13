@@ -15,10 +15,15 @@
     "multiserver": "^1.7.6",
     "muxrpc": "^6.3.3",
     "pull-stream": "^3.5.0",
-    "scuttlebot": "^9.4.4",
-    "ssb-blobs": "^0.1.8",
+    "scuttlebot": "^10.0.5",
+    "ssb-blobs": "^1.1.0",
     "ssb-config": "^2.2.0",
-    "ssb-keys": "^7.0.3"
+    "ssb-friends": "^2.0.0",
+    "ssb-keys": "^7.0.3",
+    "ssb-links": "^3.0.0",
+    "ssb-private": "^0.1.1",
+    "ssb-query": "^1.0.0",
+    "ssb-ws": "^1.0.1"
   },
   "devDependencies": {
     "rimraf": "^2.6.1",

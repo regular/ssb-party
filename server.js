@@ -9,14 +9,16 @@ process.once('message', function (config) {
     createSbot = createSbot
       .use(plugins)
       .use(require('scuttlebot/plugins/gossip'))
-      .use(require('scuttlebot/plugins/friends'))
       .use(require('scuttlebot/plugins/replicate'))
+      .use(require('ssb-friends'))
       .use(require('ssb-blobs'))
       .use(require('scuttlebot/plugins/invite'))
-      // .use(require('scuttlebot/plugins/block')) // broken in flume
       .use(require('scuttlebot/plugins/local'))
       .use(require('scuttlebot/plugins/logging'))
-      .use(require('scuttlebot/plugins/private'))
+      .use(require('ssb-private'))
+      .use(require('ssb-links'))
+      .use(require('ssb-query'))
+      .use(require('ssb-ws'))
     plugins.loadUserPlugins(createSbot, config)
   }
 
