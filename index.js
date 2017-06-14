@@ -7,12 +7,27 @@ var msShs = require('multiserver/plugins/shs')
 var msNet = require('multiserver/plugins/net')
 var muxrpc = require('muxrpc')
 var pull = require('pull-stream')
+var ssbHash = require('pull-hash/ext/ssb')
+var multicb = require('multicb')
 
 function toSodiumKeys(keys) {
   if(!keys || !keys.public) return null
   return {
     publicKey: new Buffer(keys.public.replace('.ed25519', ''), 'base64'),
     secretKey: new Buffer(keys.private.replace('.ed25519', ''), 'base64'),
+  }
+}
+
+function fixAddBlob(add) {
+  return function (hash, cb) {
+    if (typeof hash === 'function') cb = hash, hash = null
+    var done = multicb({ pluck: 1, spread: true })
+    var sink = pull(
+      ssbHash(done()),
+      add(hash, done())
+    )
+    done(cb)
+    return sink
   }
 }
 
@@ -57,6 +72,7 @@ module.exports = function (opts, cb) {
         || JSON.parse(fs.readFileSync(config.manifestFile))
       var sbot = muxrpc(manifest, false)()
       sbot.id = '@'+stream.remote.toString('base64')+'.ed25519'
+      if (sbot.blobs && sbot.blobs.add) sbot.blobs.add = fixAddBlob(sbot.blobs.add)
       pull(stream, sbot.createStream(), stream)
       delete config.keys
       cb(null, sbot, config)

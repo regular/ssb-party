@@ -12,8 +12,10 @@
     "url": "ssb://%bS/WGqQrhQfH8eoyWieK+9M56DjJ8Q4ulkvb6sXZwPo=.sha256"
   },
   "dependencies": {
+    "multicb": "^1.2.1",
     "multiserver": "^1.7.6",
     "muxrpc": "^6.3.3",
+    "pull-hash": "^1.0.0",
     "pull-stream": "^3.5.0",
     "scuttlebot": "^10.0.5",
     "ssb-blobs": "^1.1.0",
