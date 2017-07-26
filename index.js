@@ -75,6 +75,7 @@ module.exports = function (opts, cb) {
       if (sbot.blobs && sbot.blobs.add) sbot.blobs.add = fixAddBlob(sbot.blobs.add)
       pull(stream, sbot.createStream(), stream)
       delete config.keys
+      setTimeout(sbot.whoami, 15e3) // keepalive
       cb(null, sbot, config)
     })
   }(remote))
