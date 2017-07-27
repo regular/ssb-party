@@ -31,6 +31,13 @@ function fixAddBlob(add) {
   }
 }
 
+function fork(before, after) {
+  return function () {
+    before.apply(this, arguments)
+    after.apply(this, arguments)
+  }
+}
+
 module.exports = function (opts, cb) {
   if (typeof opts === 'function') cb = opts, opts = null
   opts = opts || {}
@@ -75,7 +82,10 @@ module.exports = function (opts, cb) {
       if (sbot.blobs && sbot.blobs.add) sbot.blobs.add = fixAddBlob(sbot.blobs.add)
       pull(stream, sbot.createStream(), stream)
       delete config.keys
-      setTimeout(sbot.whoami, 15e3) // keepalive
+      var keepalive = setInterval(sbot.whoami, 1e3)
+      sbot.close = fork(sbot.close, function () {
+        clearInterval(keepalive)
+      })
       cb(null, sbot, config)
     })
   }(remote))
