@@ -41,7 +41,7 @@ function fork(before, after) {
 module.exports = function (opts, cb) {
   if (typeof opts === 'function') cb = opts, opts = null
   opts = opts || {}
-  var config = createConfig(process.env.ssb_appname, opts)
+  var config = opts.ignoreConfigfile ? opts : createConfig(process.env.ssb_appname || opts.appName, opts)
   var appKey = config.appKey ||
     (config.caps && config.caps.shs && new Buffer(config.caps.shs, 'base64'))
   if (!appKey) return cb(new Error('missing secret-handshake capability key'))
@@ -114,6 +114,7 @@ function spawnSbot(config, cb) {
   child.send(config)
   child.once('message', function (msg) {
     var manifestJSON = JSON.stringify(msg.manifest, null, 2)
+    console.log('Writing manifest to', config.manifestFile)
     fs.writeFile(config.manifestFile, manifestJSON, function (err) {
       if (err) console.error('warning: unable to write manifest: ' + err.stack)
       child.unref()
