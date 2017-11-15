@@ -40,6 +40,14 @@ party(function (err, sbot) {
 [ssb-config]: https://github.com/ssbc/ssb-config
 [secret-stack]: https://github.com/ssbc/secret-stack
 
+### command line
+
+```
+ssb-party my-folder/
+```
+
+Where `my-folder` contains your plugin, a module where `exports.init` is a function taking `(sbot, config)`.
+
 ## License
 
 Copyright (c) 2017 [@cel](@f/6sQ6d2CMxRUhLpspgGIulDxDCwYD7DzFzPNr7u5AU=.ed25519)
